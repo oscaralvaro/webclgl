@@ -53,7 +53,7 @@ WebCLGLKernel.prototype.setKernelSource = function(source, header) {
 	
 	//console.log('normal'+source);
 	this.source = source.replace(/\r\n/gi, '').replace(/\r/gi, '').replace(/\n/gi, '');
-	this.source = this.source.replace(/^\w* \w*\([\w\s\*,]*\) {/gi, '').replace(/}\W*$/gi, '');
+	this.source = this.source.replace(/^\w* \w*\([\w\s\*,]*\) {/gi, '').replace(/}(\s|\t)*$/gi, '');
 	//console.log('llaves'+this.source);
 	this.source = this.parse(this.source);
 };
