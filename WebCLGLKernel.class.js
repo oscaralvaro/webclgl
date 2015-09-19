@@ -54,7 +54,7 @@ WebCLGLKernel.prototype.setKernelSource = function(source, header) {
 	//console.log('original source: '+source);
 	this.source = source.replace(/\r\n/gi, '').replace(/\r/gi, '').replace(/\n/gi, '');
 	this.source = this.source.replace(/^\w* \w*\([\w\s\*,]*\) {/gi, '').replace(/}(\s|\t)*$/gi, '');
-	console.log('minified source: '+this.source);
+	//console.log('minified source: '+this.source);
 	this.source = this.parse(this.source);
 };
 /**
@@ -83,7 +83,7 @@ WebCLGLKernel.prototype.parse = function(source) {
 		}
 	}
 	source = source.replace(/```(\s|\t)*gl/gi, "").replace(/```/gi, "");
-	console.log('%c translated source:'+source, "background-color:#000;color:#FFF");
+	//console.log('%c translated source:'+source, "background-color:#000;color:#FFF");
 	return source;
 };
 /**
