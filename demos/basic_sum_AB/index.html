@@ -7,10 +7,10 @@
    
     <title>WebCLGL 2.0</title> 
    
-    <script src="WebCLGLUtils.class.js"></script>
-    <script src="WebCLGLBuffer.class.js"></script>
-    <script src="WebCLGLKernel.class.js"></script>
-   	<script src="WebCLGL.class.js"></script>
+    <script src="../../WebCLGLUtils.class.js"></script>
+    <script src="../../WebCLGLBuffer.class.js"></script>
+    <script src="../../WebCLGLKernel.class.js"></script>
+   	<script src="../../WebCLGL.class.js"></script>
    
   </head>
   <body style="background-color:#FFF"> 
@@ -21,7 +21,7 @@
 	<br />
 	A+B CPU<div id="DIVC_CPU"></div>
 	<br />
-	A+B+NUM GPU<div id="DIVC_GPU"></div>
+	A+B GPU<div id="DIVC_GPU"></div>
 		
 	<script>
 		// FILL ARRAYS A AND B
@@ -40,7 +40,7 @@
 		
 		
 		
-		// PERFORM A + B WITH CPU
+		// TYPICAL A + B WITH CPU
 		var C_CPU = [];
 		for(var n = 0; n < _length; n++) {
 			C_CPU[n] = A[n]+B[n];
@@ -52,7 +52,7 @@
 		
 		
 		
-		// PERFORM A + B + SIMPLE NUM WITH GPU
+		// PERFORM A + B WITH GPU
 		webCLGL = new WebCLGL();
 		var offset = 0; // 0 = to handle values from 0.0 to 1.0
 		var buffer_A = webCLGL.createBuffer(_length, "FLOAT", offset);
@@ -62,16 +62,14 @@
 		webCLGL.enqueueWriteBuffer(buffer_B, B);
 		
 		var kernel_add_source = 'void main(float* A,'+
-                                      'float* B,'+
-                                      'float num) {'+
-                              	'vec2 x = get_global_id();'+ // or get_global_id()+vec2(0.1,0.1)
-                                'out_float = A[x]+B[x]+num;'+
+											'float* B) {'+
+                              	'vec2 x = get_global_id();'+
+                                'out_float = A[x]+B[x];'+
                             '}';
 							
 		var kernel_add = webCLGL.createKernel(kernel_add_source);
 		kernel_add.setKernelArg(0, buffer_A);
 		kernel_add.setKernelArg(1, buffer_B);
-		kernel_add.setKernelArg(2, 0.01);
 		kernel_add.compile();
 		
 		webCLGL.enqueueNDRangeKernel(kernel_add, buffer_C); 
