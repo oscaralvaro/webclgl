@@ -15,7 +15,7 @@ Not 100% the same as the future <a href="https://en.wikipedia.org/wiki/WebCL">We
 - <a href="https://rawgit.com/stormcolor/webclgl/master/demos/compare_values_with_other_ids/index.html"> Compare values with other ids</a><br />
 
 
-<h3><a href="http://stormcolour.appspot.com/CONTENT/WebCLGL-2.0-API-Doc/WebCLGL.html">API Doc WebCLGL 2.0</a></h3>
+<h3><a href="https://rawgit.com/stormcolor/webclgl/master/APIdoc/APIdoc/WebCLGL.html">API Doc WebCLGL 2.0</a></h3>
 <h3><a href="http://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf">OpenGL ES Shading Language 1.0 Reference Card (Pag 3-4)</a></h3>
 <br />
 <br />
