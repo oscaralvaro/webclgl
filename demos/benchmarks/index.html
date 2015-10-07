@@ -27,7 +27,7 @@
 			
 		<script>
 			// FILL ARRAYS A AND B
-			var _length = 128*128;
+			var _length = 1280*128;
 			var A = [];
 			var B = [];
 			
@@ -54,7 +54,7 @@
 
 				var result = 0;
 				for(var n = 0; n < _length; n++) {
-					for(var nB=0; nB<10000; nB++) result = Math.sqrt(result+A[n]+B[n]+nB);
+					result = A[n]/(A[n]+B[n]);
 					C_CPU[n] = result;
 				}
 
@@ -83,7 +83,7 @@
 													'float num) {'+
 						'vec2 n = get_global_id();'+
 						'float result = 0.0;'+
-						'for(int nB=0; nB < 10000; nB++) result = sqrt(result+A[n]+B[n]+float(nB));'+
+						'result = A[n]/(A[n]+B[n]);'+
 						'out_float = result;'+
 					'}';
 				var kernel_add = webCLGL.createKernel(kernel_add_source);
